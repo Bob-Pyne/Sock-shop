@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: default 
+  annotations:
+spec:
+  ingressClassName: nginx
+  rules:
+
+    - host: prometheus.bobpyne.me
+
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-kube-prometheus-prometheus
+                port: 
+                  number:      9094        
+
+    
